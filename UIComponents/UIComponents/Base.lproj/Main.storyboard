@@ -543,6 +543,11 @@
                                             <action selector="goBackButtonTapped:" destination="8R7-g3-9b9" id="4hh-S4-tP1"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem title="openSafari" image="safari" catalog="system" id="9X0-62-p1V">
+                                        <connections>
+                                            <action selector="openWithSafariButtonTapped:" destination="8R7-g3-9b9" id="AfP-PK-BzM"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem title="Forward" image="arrowshape.turn.up.forward.fill" catalog="system" id="eiS-r6-iPb">
                                         <connections>
                                             <action selector="goForwardButtonTapped:" destination="8R7-g3-9b9" id="Za7-ob-LJY"/>
@@ -819,6 +824,7 @@
         <image name="arrowshape.turn.up.forward.fill" catalog="system" width="128" height="106"/>
         <image name="bgImage" width="640" height="360"/>
         <image name="location" catalog="system" width="128" height="118"/>
+        <image name="safari" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

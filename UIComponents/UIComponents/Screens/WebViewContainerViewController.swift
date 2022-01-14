@@ -21,20 +21,11 @@ class WebViewContainerViewController: UIViewController {
         configureActivityIndicator()
     }
 
-    var urlString = """
-            <!DOCTYPE html>
-                <html>
-                    <body>
-                        <h1>My First Heading</h1>
-                        <p>My first paragraph.</p>
-            <a href="https://www.w3schools.com">This is a link</a>
-                    </body>
-                </html>
-            """
+
 
     func configureWebView() {
-      /*  guard let url = URL(string: urlString) else { return }
-        _ = URLRequest(url: url)
+      /* guard let url = URL(string: urlString) else { return }
+        _ = URLRequest(url: url)*/
 
         let preferences = WKPreferences()
         preferences.javaScriptCanOpenWindowsAutomatically = false
@@ -48,7 +39,7 @@ class WebViewContainerViewController: UIViewController {
         webView.addObserver(self,
                             forKeyPath: #keyPath(WKWebView.isLoading),
                             options: .new,
-                            context: nil) */
+                            context: nil)
         webView.loadHTMLString(urlString, baseURL: nil)
     }
 
@@ -84,6 +75,32 @@ class WebViewContainerViewController: UIViewController {
     @IBAction func goForwardButtonTapped(_ sender: UIBarButtonItem){
         webView.goForward()
     }
+    
+    @IBAction func openWithSafariButtonTapped(_ sender: UIBarButtonItem){
+        UIApplication.shared.open(webView.url!, options: [:], completionHandler: nil)
+    }
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        
+        let css = "h1 {font-family: Lucida Console ; font-weight:Bold; color: red;} p{color: green;background-color: lightgrey;width: auto; }"
+        
+        let js = "var style = document.createElement('style'); style.innerHTML = '\(css)'; document.head.appendChild(style);"
+        
+        webView.evaluateJavaScript(js, completionHandler: nil)
+    }
+    var urlString = """
+            <!DOCTYPE html>
+            <html>
+            
+            
+            </style>
+            <body>
+
+            <h1>My First Heading</h1>
+            <p>My first paragraph.</p>
+
+            </body>
+            </html>
+            """
 }
 
 extension WebViewContainerViewController: WKNavigationDelegate {
