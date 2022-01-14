@@ -36,6 +36,26 @@ class MapViewController: UIViewController {
         mapView.addAnnotation(annotation)
     }
 
+    func showPermissionAlert(){
+        let alert = UIAlertController(title: "Location access required to get your current location", message: "Please allow location access", preferredStyle: .alert)
+                let settingsAction = UIAlertAction(title: "Settings", style: .default, handler: {action in
+
+                    // //location izni sayfasını acar
+                    UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
+                })
+
+                let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+
+               
+                alert.addAction(cancelAction)
+        alert.addAction(settingsAction)
+              
+                alert.preferredAction = settingsAction
+
+                self.present(alert, animated: true, completion: nil)
+            }
+    }
+    
     func checkLocationPermission() {
         switch self.locationManager.authorizationStatus {
         case .authorizedAlways, .authorizedWhenInUse, .authorized:
