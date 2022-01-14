@@ -538,6 +538,16 @@
                                             <action selector="reloadButtonTapped:" destination="8R7-g3-9b9" id="xfH-1m-Kq8"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem title="Back" image="arrowshape.turn.up.backward.fill" catalog="system" id="dam-7S-kmD">
+                                        <connections>
+                                            <action selector="goBackButtonTapped:" destination="8R7-g3-9b9" id="4hh-S4-tP1"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Forward" image="arrowshape.turn.up.forward.fill" catalog="system" id="eiS-r6-iPb">
+                                        <connections>
+                                            <action selector="goForwardButtonTapped:" destination="8R7-g3-9b9" id="Za7-ob-LJY"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -805,6 +815,8 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
+        <image name="arrowshape.turn.up.backward.fill" catalog="system" width="128" height="106"/>
+        <image name="arrowshape.turn.up.forward.fill" catalog="system" width="128" height="106"/>
         <image name="bgImage" width="640" height="360"/>
         <image name="location" catalog="system" width="128" height="118"/>
         <systemColor name="labelColor">

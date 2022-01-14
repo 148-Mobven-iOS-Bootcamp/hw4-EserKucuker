@@ -25,6 +25,7 @@ class MapViewController: UIViewController {
         self.view.addGestureRecognizer(longPressGesture)
     }
 
+
     @objc func handleLongPressGesture(_ sender: UILongPressGestureRecognizer) {
         let point = sender.location(in: mapView)
         let coordinate = mapView.convert(point, toCoordinateFrom: mapView)
@@ -40,8 +41,11 @@ class MapViewController: UIViewController {
         case .authorizedAlways, .authorizedWhenInUse, .authorized:
             locationManager.requestLocation()
         case .denied, .restricted:
-            //popup gosterecegiz. go to settings butonuna basildiginda
-            //kullaniciyi uygulamamizin settings sayfasina gonder
+            
+            // uydulama location ayarlarına izin vermediyse burdan
+            //ayarlar penceresine gitmesi için gereken func cagırılır
+            showPermissionAlert()
+
             break
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()

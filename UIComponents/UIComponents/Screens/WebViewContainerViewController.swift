@@ -21,11 +21,20 @@ class WebViewContainerViewController: UIViewController {
         configureActivityIndicator()
     }
 
-    var urlString = "https://www.google.com"
+    var urlString = """
+            <!DOCTYPE html>
+                <html>
+                    <body>
+                        <h1>My First Heading</h1>
+                        <p>My first paragraph.</p>
+            <a href="https://www.w3schools.com">This is a link</a>
+                    </body>
+                </html>
+            """
 
     func configureWebView() {
-        guard let url = URL(string: urlString) else { return }
-        let urlRequest = URLRequest(url: url)
+      /*  guard let url = URL(string: urlString) else { return }
+        _ = URLRequest(url: url)
 
         let preferences = WKPreferences()
         preferences.javaScriptCanOpenWindowsAutomatically = false
@@ -39,8 +48,8 @@ class WebViewContainerViewController: UIViewController {
         webView.addObserver(self,
                             forKeyPath: #keyPath(WKWebView.isLoading),
                             options: .new,
-                            context: nil)
-        webView.load(urlRequest)
+                            context: nil) */
+        webView.loadHTMLString(urlString, baseURL: nil)
     }
 
     func configureActivityIndicator() {
@@ -48,6 +57,8 @@ class WebViewContainerViewController: UIViewController {
         activityIndicator.color = .red
         activityIndicator.hidesWhenStopped = true
     }
+    
+    
 
     override func observeValue(forKeyPath keyPath: String?,
                                of object: Any?,
@@ -62,13 +73,26 @@ class WebViewContainerViewController: UIViewController {
 
     @IBAction func reloadButtonTapped(_ sender: UIBarButtonItem) {
         webView.reload()
+        
+    }
+    @IBAction func goBackButtonTapped(_ sender: UIBarButtonItem){
+        self.navigationController?.popViewController(animated: true)
+        
+        
+    }
+    
+    @IBAction func goForwardButtonTapped(_ sender: UIBarButtonItem){
+        webView.goForward()
     }
 }
 
 extension WebViewContainerViewController: WKNavigationDelegate {
+   
 
 }
 
 extension WebViewContainerViewController: WKUIDelegate {
 
 }
+
+
