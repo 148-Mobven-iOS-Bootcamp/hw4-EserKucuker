@@ -36,28 +36,7 @@ class MapViewController: UIViewController {
         mapView.addAnnotation(annotation)
     }
 
-    func showPermissionAlert() {
-        // popup sayfası mesajlarını ayarlar
-        let alert = UIAlertController(title: "Location access required to get your current location", message: "Please allow location access", preferredStyle: .alert)
-                
-        // ayar butonu ayarı
-        let settingsAction = UIAlertAction(title: "Settings", style: .default, handler: {action in
-
-                    // //location izni sayfasını acar
-                    UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
-                })
-        //  iptal butonu ayarı
-         let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
-
-        
-        alert.addAction(cancelAction)
-        alert.addAction(settingsAction)
-        
-        alert.preferredAction = settingsAction
-
-        self.present(alert, animated: true, completion: nil)
-            
-    }
+    
     
     func checkLocationPermission() {
         switch self.locationManager.authorizationStatus {
@@ -103,6 +82,29 @@ extension MapViewController: CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
 
+    }
+    
+    func showPermissionAlert() {
+        // popup sayfası mesajlarını ayarlar
+        let alert = UIAlertController(title: "Location access required to get your current location", message: "Please allow location access", preferredStyle: .alert)
+                
+        // ayar butonu ayarı
+        let settingsAction = UIAlertAction(title: "Settings", style: .default, handler: {action in
+
+                    // //location izni sayfasını acar
+                    UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
+                })
+        //  iptal butonu ayarı
+         let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+
+        
+        alert.addAction(cancelAction)
+        alert.addAction(settingsAction)
+        
+        alert.preferredAction = settingsAction
+
+        self.present(alert, animated: true, completion: nil)
+            
     }
 }
 
